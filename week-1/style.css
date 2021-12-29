@@ -194,10 +194,9 @@ div.images {
             flex-direction: row;
   }
   .logo {
-    -webkit-box-flex: 5;
-        -ms-flex: 5 1 600px;
-            flex: 5 1 600px;
     margin-top: 10px;
+    position: relative;
+    left: 0;
   }
   .header .menu {
     display: -webkit-box;
@@ -208,9 +207,8 @@ div.images {
         -ms-flex-direction: row;
             flex-direction: row;
     max-height: none;
-    -webkit-box-flex: 2;
-        -ms-flex: 2 1 300px;
-            flex: 2 1 300px;
+    position: absolute;
+    right: 0;
   }
   .header .menu-icon {
     display: none;

@@ -165,14 +165,16 @@ div.images {
     flex-direction: row;
   }
   .logo {
-    flex: 5 1 600px;
     margin-top: 10px;
+    position: relative;
+    left: 0;
   }
   .header .menu {
     display: flex;
     flex-direction: row;
     max-height: none;
-    flex: 2 1 300px;
+    position: absolute;
+    right: 0;
   }
   .header .menu-icon {
     display: none;
