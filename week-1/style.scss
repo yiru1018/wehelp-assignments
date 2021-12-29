@@ -162,7 +162,8 @@ div.images {
 @media screen and (min-width: 601px) {
   .header {
     display: flex;
-    flex-direction: row;
+    // flex-direction: row; 只要display:flex就會橫向排列
+    position: relative;
   }
   .logo {
     margin-top: 10px;
@@ -171,7 +172,7 @@ div.images {
   }
   .header .menu {
     display: flex;
-    flex-direction: row;
+    // flex-direction: row;只要display:flex就會橫向排列
     max-height: none;
     position: absolute;
     right: 0;

@@ -188,10 +188,7 @@ div.images {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    position: relative;
   }
   .logo {
     margin-top: 10px;
@@ -202,10 +199,6 @@ div.images {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
     max-height: none;
     position: absolute;
     right: 0;
