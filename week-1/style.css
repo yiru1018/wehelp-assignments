@@ -48,7 +48,6 @@ a {
 .header .menu-icon {
   cursor: pointer;
   display: inline-block;
-  float: right;
   padding: 28px 20px;
   position: relative;
   -webkit-user-select: none;
@@ -109,8 +108,8 @@ a {
           transform: rotate(45deg);
 }
 
-.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
-.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+.header .menu-btn:checked ~ .menu-icon .navicon:before,
+.header .menu-btn:checked ~ .menu-icon .navicon:after {
   top: 0;
 }
 
@@ -118,9 +117,17 @@ div.welcome {
   height: 300px;
   width: 100%;
   background-color: #9eddec;
-  text-align: center;
-  line-height: 300px;
   margin: 10px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
 }
 
 main {
@@ -150,6 +157,7 @@ div.images {
 .image {
   width: 24%;
   margin-bottom: 0.5rem;
+  background-color: #9eddec;
 }
 
 .image img {
@@ -159,9 +167,9 @@ div.images {
      object-fit: cover;
 }
 
-.image h3 {
+.image div {
   background-color: #9eddec;
-  margin-top: -5px;
+  margin: auto;
   text-align: center;
 }
 
@@ -206,5 +214,11 @@ div.images {
   .header .menu-icon {
     display: none;
   }
+}
+
+button {
+  width: 8rem;
+  height: 2.5rem;
+  margin-top: 2.5rem;
 }
 /*# sourceMappingURL=style.css.map */

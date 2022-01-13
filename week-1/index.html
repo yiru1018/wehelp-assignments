@@ -28,40 +28,83 @@
         <h1 style="font-size: 40px">Welcome to MyHome</h1>
       </div>
 
-      <div class="images">
-        <div class="image">
-          <img src="./images/1.jpg" alt="" />
-          <h3>大象</h3>
-        </div>
-        <div class="image">
-          <img src="./images/2.jpg" alt="" />
-          <h3>松鼠</h3>
-        </div>
-        <div class="image">
-          <img src="./images/3.jpg" alt="" />
-          <h3>鳥</h3>
-        </div>
-        <div class="image">
-          <img style="object-position: 50% 20%" src="./images/4.jpg" alt="" />
-          <h3>貓</h3>
-        </div>
-        <div class="image">
-          <img src="./images/5.jpg" alt="" />
-          <h3>北極熊</h3>
-        </div>
-        <div class="image">
-          <img src="./images/6.jpg" alt="" />
-          <h3>獅子</h3>
-        </div>
-        <div class="image">
-          <img style="object-position: 50% 70%" src="./images/7.jpg" alt="" />
-          <h3>狗</h3>
-        </div>
-        <div class="image">
-          <img src="./images/8.jpg" alt="" />
-          <h3>熊貓</h3>
-        </div>
-      </div>
+      <div class="images"></div>
+
+      <div class="load_more"><button>Load More</button></div>
     </main>
   </body>
+  <script>
+    //initial page
+    const imagesDiv = document.querySelector("div.images");
+
+    let requestURL =
+      "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json";
+    let request = new XMLHttpRequest();
+    request.open("GET", requestURL);
+    request.responseType = "json";
+    request.send();
+    request.onload = function () {
+      let data = request.response;
+      showData(data);
+    };
+
+    //get site names and photos
+    function showData(jsonObj) {
+      let sites = jsonObj.result.results;
+
+      for (let i = 0; i <= 7; i++) {
+        let imageDiv = document.createElement("div");
+        imageDiv.classList.add("image");
+        let img = document.createElement("img");
+        let siteNameDiv = document.createElement("div");
+
+        siteNameDiv.textContent = sites[i].stitle;
+        img.src = "http" + sites[i].file.split("http")[1];
+
+        imageDiv.appendChild(img);
+        imageDiv.appendChild(siteNameDiv);
+
+        imagesDiv.appendChild(imageDiv);
+      }
+    }
+
+    //load more button
+    const loadBtn = document.querySelector("div.load_more button");
+    loadBtn.addEventListener("click", loadMore);
+
+    //interval count
+    let counter = -8;
+    loadBtn.addEventListener("click", () => {
+      counter += 8;
+    });
+
+    function loadMore() {
+      let requestURL =
+        "https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json";
+      let request = new XMLHttpRequest();
+      request.open("GET", requestURL);
+      request.responseType = "json";
+      request.send();
+      request.onload = function () {
+        let data = request.response;
+        let sites = data.result.results;
+
+        for (let i = 8 + counter; i <= 15 + counter; i++) {
+          if (i >= 58) break;
+          let imageDiv = document.createElement("div");
+          imageDiv.classList.add("image");
+          let img = document.createElement("img");
+          let siteNameDiv = document.createElement("div");
+
+          siteNameDiv.textContent = sites[i].stitle;
+          img.src = "http" + sites[i].file.split("http")[1];
+
+          imageDiv.appendChild(img);
+          imageDiv.appendChild(siteNameDiv);
+
+          imagesDiv.appendChild(imageDiv);
+        }
+      };
+    }
+  </script>
 </html>
