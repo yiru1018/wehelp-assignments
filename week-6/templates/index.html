@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Python Flask</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      div.welcome {
+        background-color: rgb(99, 120, 189);
+        color: aliceblue;
+        text-align: center;
+        font-size: 25px;
+        height: 5rem;
+        padding-top: 1.5rem;
+        margin-bottom: 5rem;
+        font-weight: bold;
+      }
+
+      form {
+        width: 30%;
+        margin: auto;
+        font-size: 20px;
+      }
+
+      input {
+        margin: 0.5rem;
+        height: 1.5rem;
+      }
+
+      button {
+        height: 2rem;
+        width: 3rem;
+        margin: 1.2rem;
+      }
+
+      div.center {
+        text-align: center;
+      }
+
+      hr {
+        width: 100%;
+        margin: 3rem 0rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="welcome">歡迎光臨，請輸入帳號密碼</div>
+
+    <form action="/signup" method="post">
+      <div class="center">
+        註冊帳號
+        <br />
+        姓名<input type="text" name="name" />
+        <br />
+        帳號<input type="text" name="username" />
+        <br />
+        密碼<input type="password" name="password" />
+        <br />
+        <button>註冊</button>
+      </div>
+    </form>
+
+    <hr />
+
+    <form action="/signin" method="post">
+      <div class="center">
+        登入系統
+        <br />
+        帳號<input type="text" name="username" />
+        <br />
+        密碼<input type="password" name="password" />
+        <br />
+        <button>登入</button>
+      </div>
+    </form>
+  </body>
+</html>
