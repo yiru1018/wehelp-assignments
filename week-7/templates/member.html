@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Python Flask</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      div.welcome {
+        background-color: rgb(99, 120, 189);
+        color: aliceblue;
+        text-align: center;
+        font-size: 25px;
+        height: 5rem;
+        padding-top: 1.5rem;
+        margin-bottom: 5rem;
+        font-weight: bold;
+      }
+
+      div.center {
+        text-align: center;
+        font-size: 32px;
+      }
+
+      a,
+      div.input {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .center input,
+      button {
+        line-height: 2rem;
+        padding: 0 0.5rem;
+        margin: 1rem 0;
+      }
+
+      label {
+        font-weight: bold;
+        font-size: 28px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="welcome">歡迎光臨，這是會員首頁</div>
+
+    <div class="center">
+      <p id="renew_name" style="display: inline-block">{{name}}</p>
+      ，歡迎登入系統
+      <a href="/signout">登出系統</a>
+
+      <br />
+      <label for="name">查詢會員姓名</label>
+      <br />
+      <input type="text" id="username" />
+      <button id="search">查詢</button>
+      <p class="show_name"></p>
+
+      <br />
+      <label for="renew">更新我的姓名</label>
+      <br />
+      <input type="text" id="name" name="nm" />
+      <button id="renew">更新</button>
+      <p class="show_result"></p>
+    </div>
+  </body>
+  <script>
+    //search name
+    const search_btn = document.querySelector("#search");
+    const show_name_p = document.querySelector(".show_name");
+
+    function show_name() {
+      const username = document.getElementById("username");
+
+      fetch(`http://127.0.0.1:3000/api/members?username=${username.value}`)
+        .then((res) => res.json())
+        .catch((error) => console.error("Error:", error))
+        .then((data) => {
+          console.log(data);
+          if (data.data == null) show_name_p.textContent = "無此會員";
+          else show_name_p.textContent = data.data.name;
+        });
+    }
+
+    search_btn.addEventListener("click", show_name);
+
+    //rename
+    const new_name = document.querySelector("#name");
+    const renew_btn = document.querySelector("#renew");
+    const show_result_p = document.querySelector(".show_result");
+    const renew_name_p = document.querySelector("#renew_name");
+
+    function rename() {
+      const url = `http://127.0.0.1:3000/api/member`;
+      let headers = { "Content-Type": "application/json" };
+      let body = { name: new_name.value };
+
+      fetch(url, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body),
+      })
+        .then((res) => res.json())
+        .catch((error) => console.error("Error:", error))
+        .then((response) => {
+          console.log("success:", response);
+          if (response.hasOwnProperty("ok")) {
+            show_result_p.textContent = "更新成功";
+            renew_name_p.textContent = new_name.value;
+          }
+        });
+    }
+
+    renew_btn.addEventListener("click", rename);
+  </script>
+</html>
